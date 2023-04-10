@@ -2,6 +2,8 @@ package main
 
 import (
 	"golangGinMongo/routes"
+	"log"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -9,12 +11,16 @@ import (
 
 func main() {
 	router := gin.Default()
+	PORT := os.Getenv("PORT")
+	if PORT == "" {
+		log.Fatal("port no puede ser un string vacio!")
+	}
 
 	//cors
 	config := cors.DefaultConfig()
 
 	//cors config
-	config.AllowOrigins = []string{"http://localhost:5173"}
+	config.AllowOrigins = []string{"https://task-app-amvt.onrender.com"}
 
 	//estas credenciales van a ir a parar al frontend donde van a alojar datos en las cookies
 	config.AllowCredentials = true
@@ -33,5 +39,5 @@ func main() {
 	router.DELETE("/user/:userid", routes.DeleteUser)
 
 	//server
-	router.Run("localhost:3000")
+	router.Run("0.0.0.0:" + PORT)
 }
