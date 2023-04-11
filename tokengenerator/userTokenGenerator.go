@@ -6,14 +6,13 @@ import (
 	"os"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/joho/godotenv"
 )
 
 func GenerateToken(user model.User) (string, error) {
 
-	if err := godotenv.Load(); err != nil {
-		log.Println("El archivo .env no se encuentra")
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	log.Println("El archivo .env no se encuentra")
+	// }
 	secretKey := os.Getenv("SECRET_KEY")
 	if secretKey == "" {
 		log.Fatal("No se encontro la llave válida")
