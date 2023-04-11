@@ -2,6 +2,7 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"golangGinMongo/collection"
 	"golangGinMongo/database"
 	"golangGinMongo/model"
@@ -26,6 +27,7 @@ func LoginUser(c *gin.Context) {
 
 	cookieClient, error := c.Request.Cookie("CheckAuth")
 	if error == nil && cookieClient.Value != "" {
+		fmt.Println(cookieClient.Name, cookieClient.Value)
 		defer cancel()
 		var cookie CookieSearched
 		c.BindJSON(&cookie)
