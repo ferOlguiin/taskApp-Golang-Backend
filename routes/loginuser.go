@@ -72,7 +72,7 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	c.SetSameSite(http.SameSiteLaxMode)
+	c.SetSameSite(http.SameSiteDefaultMode)
 	c.SetCookie("Auth", token, 24000, "/", "", true, true)
 	c.SetCookie("CheckAuth", "SiAutentico", 24000, "/", "", true, false)
 
