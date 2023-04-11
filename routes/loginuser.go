@@ -72,9 +72,9 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie("Auth", token, 24000, "/", "task-app-amvt.onrender.com/", true, true)
-	c.SetCookie("CheckAuth", "SiAutentico", 24000, "/", "task-app-amvt.onrender.com/", true, true)
+	c.SetSameSite(http.SameSiteLaxMode)
+	c.SetCookie("Auth", token, 24000, "/", "task-app-amvt.onrender.com", true, true)
+	c.SetCookie("CheckAuth", "SiAutentico", 24000, "/", "task-app-amvt.onrender.com", true, false)
 
 	c.JSON(http.StatusCreated, user)
 }
