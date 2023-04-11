@@ -2,6 +2,7 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"golangGinMongo/collection"
 	"golangGinMongo/database"
 	"golangGinMongo/model"
@@ -72,9 +73,10 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
+	fmt.Println(token)
 	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie("Auth", token, 24000, "/", "task-app-amvt.onrender.com", true, true)
-	c.SetCookie("CheckAuth", "SiAutentico", 24000, "/", "task-app-amvt.onrender.com", true, false)
+	c.SetCookie("Auth", token, 24000, "/", "", true, true)
+	c.SetCookie("CheckAuth", "SiAutentico", 24000, "/", "", true, false)
 
 	c.JSON(http.StatusCreated, user)
 }
