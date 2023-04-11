@@ -24,6 +24,7 @@ func main() {
 
 	//estas credenciales van a ir a parar al frontend donde van a alojar datos en las cookies
 	config.AllowCredentials = true
+	config.AllowHeaders = []string{"Origin", "Content-Type", "withCredentials"}
 
 	//use cors
 	router.Use(cors.New(config))
