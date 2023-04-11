@@ -31,6 +31,7 @@ func LoginUser(c *gin.Context) {
 		defer cancel()
 		var cookie CookieSearched
 		c.BindJSON(&cookie)
+		fmt.Println("esta es la cookie q en teoria viene de front", cookie)
 		if cookie.Value != cookieClient.Value {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "No coinciden los datos de las cookies"})
 			return
