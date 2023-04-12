@@ -12,6 +12,7 @@ func Logout(c *gin.Context) {
 		panic(err.Error())
 	}
 	fmt.Println("esta es la cookie de auth:", cookieone)
+	fmt.Println("viendo que tiene cookie auth:", cookieone.Name)
 	//cookieone.Name = "Deleted"
 	//cookieone.Value = "Unuse"
 	//cookieone.Expires = time.Unix(1414414788, 1414414788000)
