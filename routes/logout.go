@@ -11,11 +11,11 @@ func Logout(c *gin.Context) {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println("esta es la cookie de auth:", cookieone)
-	fmt.Println("viendo que tiene cookie auth:", cookieone.Name)
-	//cookieone.Name = "Deleted"
-	//cookieone.Value = "Unuse"
-	//cookieone.Expires = time.Unix(1414414788, 1414414788000)
+	fmt.Println("viendo que tiene cookie auth:", cookieone.MaxAge)
+	cookieone.Name = ""
+	cookieone.Value = ""
+	cookieone.MaxAge = -1
+	fmt.Println("esta es la cookie de auth despues delcambio:", cookieone)
 
 	cookietwo, fail := c.Request.Cookie("CheckAuth")
 	if fail != nil {
