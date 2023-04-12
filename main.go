@@ -39,6 +39,7 @@ func main() {
 	router.POST("/user", routes.LoginUser)
 	router.POST("/createuser", routes.CreateUser)
 	router.DELETE("/user/:userid", routes.DeleteUser)
+	router.DELETE("/logout", routes.Logout)
 
 	//server
 	router.Run("0.0.0.0:" + PORT)
