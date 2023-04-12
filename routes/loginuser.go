@@ -24,12 +24,10 @@ func LoginUser(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
 	//logeo de usuario por token y cookies
-	cookiedelfront, fail := c.Request.Cookie("Check")
-	fmt.Println("esta es la cookie obtenida desde el front", cookiedelfront)
-	fmt.Println("esta es la error de la cookie obtenida desde el front", fail)
 
 	cookieClient, error := c.Request.Cookie("CheckAuth")
-	if error == nil && cookieClient.Value != "" {
+	if error == nil && cookieClient.Value == "SiAutentico" {
+		fmt.Println("esta es la cookie de chequeo q dice siauntentico", cookieClient)
 		defer cancel()
 		var cookie CookieSearched
 		c.BindJSON(&cookie)
