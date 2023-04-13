@@ -11,13 +11,15 @@ func Logout(c *gin.Context) {
 	if err != nil {
 		panic(err.Error())
 	}
-	c.SetCookie(cookieone.Name, "", -1, "", "", false, false)
+	c.SetSameSite(http.SameSiteNoneMode)
+	c.SetCookie(cookieone.Name, "", -1, "", "", true, true)
 
 	cookietwo, fail := c.Request.Cookie("CheckAuth")
 	if fail != nil {
 		panic(err.Error())
 	}
-	c.SetCookie(cookietwo.Name, "", -1, "", "", false, false)
+	c.SetSameSite(http.SameSiteNoneMode)
+	c.SetCookie(cookietwo.Name, "", -1, "", "", true, false)
 
 	c.JSON(http.StatusAccepted, gin.H{"message": "Cookies eliminadas correctamente"})
 }
