@@ -23,7 +23,6 @@ func LoginUser(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
 	//logeo de usuario por token y cookies
-
 	cookieClient, error := c.Request.Cookie("CheckAuth")
 	if error == nil && cookieClient.Value == "SiAutentico" {
 		defer cancel()
