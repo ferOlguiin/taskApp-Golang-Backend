@@ -2,7 +2,6 @@ package routes
 
 import (
 	"context"
-	"fmt"
 	"golangGinMongo/collection"
 	"golangGinMongo/database"
 	"golangGinMongo/model"
@@ -27,17 +26,14 @@ func LoginUser(c *gin.Context) {
 
 	cookieClient, error := c.Request.Cookie("CheckAuth")
 	if error == nil && cookieClient.Value == "SiAutentico" {
-		fmt.Println("esta es la cookie de chequeo q dice siauntentico", cookieClient)
 		defer cancel()
 		var cookie CookieSearched
 		c.BindJSON(&cookie)
-		fmt.Println("esta es la cookie q en teoria viene de front", cookie)
 		if cookie.Value != cookieClient.Value {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "No coinciden los datos de las cookies"})
 			return
 		}
 		token, notoken := c.Request.Cookie("Auth")
-		fmt.Println("esto es el valor de cookie de auth", token)
 		if notoken != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "La cookie Auth no se encontro con valores o no se pudo leer"})
 			return
